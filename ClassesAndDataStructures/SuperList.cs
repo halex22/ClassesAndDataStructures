@@ -51,5 +51,43 @@ namespace ClassesAndDataStructures
             _realArray = newArray;
             return element;
         }
+
+        public void Delete(int index)
+        {
+            int newArrayLength = _realArray.Length - 1;
+            var newArray = new T[newArrayLength];
+
+            for (int i = 0;i < newArrayLength;i++)
+            {
+                if (i == index) continue;
+                newArray[i] = _realArray[i];
+            }
+        }
+
+        public void Unshift(T[] newItems)
+        {
+            var newArray = new T[_realArray.Length + newItems.Length];
+
+            foreach (var item in newItems) newArray.Append(item);
+           
+            foreach (var item in _realArray) newArray.Append(item);
+
+            _realArray = newArray;
+        }
+
+        public T Shift()
+        {
+            var newArray = new T[_realArray.Length - 1];
+
+            T element = _realArray[0];
+
+            for (int i = 1; i < newArray.Length; i++)
+            {
+                newArray[i - 1] = _realArray[i];
+            }
+
+            _realArray = newArray;
+            return element;
+        }
     }
 }
